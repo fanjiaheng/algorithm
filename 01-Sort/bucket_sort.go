@@ -32,7 +32,7 @@ func bucket_sort(arr []int) {
 
 	// 利用映射函数将数据分配到各个桶中
 	for i := 0; i < len; i++ {
-		buckets[int((maxValue-minValue)/bucketSize)] = append(buckets[int((maxValue-minValue)/bucketSize)], arr[i])
+		// buckets[int((maxValue-minValue)/bucketSize)] = append(buckets[int((maxValue-minValue)/bucketSize)], arr[i])
 	}
 
 }

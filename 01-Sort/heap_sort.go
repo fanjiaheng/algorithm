@@ -1,47 +1,41 @@
 package Sort
 
 func heap_sort(arr []int) {
-	buildMaxHeap(arr)
 
-	len := len(arr)
-	for i := len - 1; i > 0; i-- {
-		swap(arr, 0, i)
-		len--
-		heapify(arr, 0)
+	for i := int(len(arr)/2 - 1); i >= 0; i-- {
+		adjust_heap(arr, i, len(arr))
+	}
+
+	for j := len(arr) - 1; j > 0; j-- {
+		swap(arr, 0, j)        //将堆顶元素与末尾元素进行交换
+		adjust_heap(arr, 0, j) //重新对堆进行调整
 	}
 }
 
-func buildMaxHeap(arr []int) { // 建立大顶堆
-	len := len(arr)
+func adjust_heap(arr []int, i, length int) {
+	tmp := arr[i]
 
-	for i := int(len / 2); i >= 0; i-- {
-		heapify(arr, i)
+	//从i结点的左子结点开始，也就是2i+1处开始
+	for k := i*2 + 1; k < length; k = k*2 + 1 {
+
+		//如果左子结点小于右子结点，k指向右子结点
+		if k+1 < length && arr[k] < arr[k+1] {
+			k++
+		}
+
+		//如果子节点大于父节点，将子节点值赋给父节点（不用进行交换）
+		if arr[k] > tmp {
+			arr[i] = arr[k]
+			i = k
+		} else {
+			break
+		}
 	}
+	arr[i] = tmp // 将tmp值放到最终的位置
 }
 
-func heapify(arr []int, i int) { // 堆调整
-
-	left := 2*i + 1
-	right := 2*i + 2
-	largest := i
-	len := len(arr)
-
-	if left < len && arr[left] > arr[largest] {
-		largest = left
-	}
-
-	if right < len && arr[right] > arr[largest] {
-		largest = right
-	}
-
-	if largest != i {
-		swap(arr, i, largest)
-		heapify(arr, largest)
-	}
-}
-
-func swap(arr []int, i, j int) {
-	temp := arr[i]
-	arr[i] = arr[j]
-	arr[j] = temp
+func swap(arr []int, a, b int) {
+	tmp := arr[a]
+	arr[a] = arr[b]
+	arr[b] = tmp
 }

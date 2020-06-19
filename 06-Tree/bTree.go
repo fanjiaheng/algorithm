@@ -2,32 +2,28 @@ package Tree
 
 // 二叉树的节点
 type BTree struct {
-	Value int
+	Value byte
 	Left  *BTree
 	Right *BTree
 }
 
-// 创建二叉树
-func create_bTree(arr []int, index int) *BTree {
+// 创建二叉树（先序创建二叉树）
+func create_bTree(arr []byte, index *int) *BTree {
 
-	if len(arr) == 0 {
-		// fmt.Println("输入的序列为空, 不能创建二叉树!")
+	if len(arr) == *index {
 		return nil
 	}
 
-	// BTree *node = new BTree()
-	// node.value = arr[index]
-	// index++
-	// if len(arr) > index {
-	// 	node.Left = create_bTree(arr, index)
-	// }
+	if arr[*index] == '#' {
+		(*index)++
+		return nil
+	}
 
-	// if len(arr) > index {
-	// 	node.Left = create_bTree(arr, index)
-	// }
+	root := &BTree{}
+	root.Value = arr[*index]
+	(*index)++
+	root.Left = create_bTree(arr, index)
+	root.Right = create_bTree(arr, index)
 
-}
-
-func insert_node() *BTree {
-
+	return root
 }

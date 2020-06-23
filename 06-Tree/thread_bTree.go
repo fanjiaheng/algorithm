@@ -45,7 +45,6 @@ func inThreading(root *ThreadBTree) {
 		pre = root
 		inThreading(root.Right) //递归右子树线索化
 	}
-
 }
 
 // 创建二叉树（先序创建线索结构的二叉树）

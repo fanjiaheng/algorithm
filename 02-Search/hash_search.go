@@ -1,59 +1,35 @@
 package Search
 
-import (
-	"fmt"
-)
-
 const (
 	HASHSIZE = 10
 )
 
-type hash_table struct {
-	elem  []int
-	count int
+// 哈希表的长度
+var HashTableLength int
+
+type HashTable struct {
+	Elem  []*int
+	Count int
 }
 
-var m int = 0
-
-func hash_search(hash_tbl *hash_table, k int) int {
-	addr := hash(k)//求哈希地址
-
-	for {
-		if hash_tbl->elem[addr] != k {//开放定址法解决冲突
-			addr = (addr+1) % m;
-			if hash_tbl->elem[addr] == 0 || addr == Hash(k) {
-				return -1;
-			}
-		}
-	}
-
-	return addr;
+// 哈希函数
+func Hash(data int) int {
+	return int(data / L)
 }
 
-func hash_init(hash_tbl *hash_table) {
-	m = HASHSIZE
-	hash_tbl.count = m
-}
+// 初始化哈希表
+func InitHashTable(tbl *HashTable {
+	tbl.Count = HashTableLength
 
-func hash(k int) int {
-	return k % m //除留余数法
-}
-
-func insert(hash_tbl *hash_table, k int) {
-	addr := hash(k);
-	for {
-		if hash_tbl.elem[addr] != NULLKEY {
-			addr = (addr+1) % m;//开放定址法
-		} else {
-			break
-		}
-	}
-
-	hash_tbl.elem[addr] = k;
-}
-
-func show(hash_tbl *hash_table) {
-	for i:= 0; i < hash_tbl.count; i++ {
-		fmt.Println(hash_tbl.elem[i])
+	for i := 0; i < HashTableLength; i++ {
+		tbl.Elem = append(tbl.Elem, -1)
 	}
 }
+
+// 插入数据到哈希表
+func Insert(tbl *HashTable，data int) {
+	adrr := Hash(data)
+	for 
+}
+
+
